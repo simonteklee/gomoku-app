@@ -1,5 +1,7 @@
 # Gomoku — app (frontend + backend)
 
+![Tester](https://github.com/simonteklee/gomoku-app/actions/workflows/tester.yml/badge.svg)
+
 Ett fullstack-exempel på hur krav och acceptanskriterier kan omsättas i kod och automatiska tester.
 Byggt som kursprojekt i **Krav och användningsfall** (yrkeshögskola): kravspecifikation → acceptanskriterier
 → ett test per kriterium.
