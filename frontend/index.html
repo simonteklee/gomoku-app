@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gomoku — fem i rad</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <!-- Startsida (AC-06) -->
+      <section id="screen-start" class="screen">
+        <h1>Gomoku</h1>
+        <p class="sub">Fem i rad — vågrätt, lodrätt eller diagonalt.</p>
+        <div id="startOptions" class="stack">
+          <button class="big" id="optAi">Spela mot datorn</button>
+          <button class="big" id="optFriend">Spela mot vän</button>
+          <button class="big" id="optRules">Visa spelregler</button>
+        </div>
+      </section>
+
+      <!-- Konfiguration (AC-01, AC-04, AC-08) -->
+      <section id="screen-config" class="screen hidden">
+        <h1>Nytt parti</h1>
+        <div class="stack">
+          <label>Spelarnamn <input id="cfgName" type="text" placeholder="Ditt namn" /></label>
+          <label>Brädstorlek
+            <select id="cfgSize">
+              <option value="15" selected>15 × 15</option>
+              <option value="19">19 × 19</option>
+            </select>
+          </label>
+          <label id="cfgDifficultyRow">Svårighetsgrad
+            <select id="cfgDifficulty">
+              <option value="easy">Lätt</option>
+              <option value="normal" selected>Normal</option>
+              <option value="hard">Svår</option>
+            </select>
+          </label>
+          <label>Min färg
+            <select id="cfgColor">
+              <option value="black" selected>Svart (börjar)</option>
+              <option value="white">Vit</option>
+            </select>
+          </label>
+          <p class="hint" id="cfgHint">Svart gör första draget.</p>
+          <div class="row">
+            <button id="cfgStart">Starta</button>
+            <button class="ghost" id="cfgCancel">Avbryt</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Väntläge för inbjudan (AC-03) -->
+      <section id="screen-invite" class="screen hidden">
+        <h1>Bjud in en vän</h1>
+        <p class="sub">Skicka länken till din vän. Partiet startar när hen öppnar den.</p>
+        <div class="stack">
+          <input id="inviteUrl" type="text" readonly />
+          <div class="row">
+            <button id="copyInvite">Kopiera länken</button>
+            <button class="ghost" id="inviteCancel">Avbryt</button>
+          </div>
+          <p class="hint" id="inviteWaiting">Väntar på motståndaren …</p>
+        </div>
+      </section>
+
+      <!-- Anslut till inbjudan (AC-03) -->
+      <section id="screen-join" class="screen hidden">
+        <h1>Du är inbjuden!</h1>
+        <div class="stack">
+          <label>Ditt namn <input id="joinName" type="text" /></label>
+          <button id="joinAccept">Anslut till partiet</button>
+        </div>
+      </section>
+
+      <!-- Spelplan (AC-02, AC-05, AC-09) -->
+      <section id="screen-game" class="screen hidden">
+        <div class="gamebar">
+          <span id="gameInfo"></span>
+          <span id="gameTurn"></span>
+        </div>
+        <div class="boardWrap"><div id="board"></div></div>
+        <div class="row">
+          <button class="ghost" id="btnUndo">Ångra</button>
+          <button class="ghost" id="btnForfeit">Ge upp</button>
+          <button class="ghost" id="btnAbort">Avsluta partiet</button>
+        </div>
+      </section>
+
+      <!-- Resultat (AC-13, AC-14, AC-15, AC-16) -->
+      <section id="screen-result" class="screen hidden">
+        <h1 id="resultTitle">Resultat</h1>
+        <p class="sub" id="resultText"></p>
+        <div class="row">
+          <button id="btnRematch">Spela igen</button>
+          <button class="ghost" id="btnMenu">Till menyn</button>
+        </div>
+      </section>
+
+      <!-- Spelregler (AC-06) -->
+      <section id="screen-rules" class="screen hidden">
+        <h1>Spelregler</h1>
+        <ul class="sub">
+          <li>Spelet spelas på ett 15×15-bräde (eller 19×19).</li>
+          <li>Svart gör alltid första draget.</li>
+          <li>Spelarna turas om att placera en sten på en ledig punkt.</li>
+          <li>Den som först får fem stenar i rad — vågrätt, lodrätt eller diagonalt — vinner.</li>
+          <li>Blir brädet fullt utan fem i rad blir partiet oavgjort.</li>
+        </ul>
+        <button class="ghost" id="rulesBack">Tillbaka</button>
+      </section>
+    </main>
+    <script type="module" src="/static/app.js"></script>
+  </body>
+</html>

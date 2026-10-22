@@ -1,0 +1,63 @@
+:root {
+  --black: #17181c;
+  --white: #f7f7f8;
+  --board: #d9a55b;
+  --line: #7a5a2e;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: #1c2130;
+  color: #e8eaf0;
+  display: flex;
+  justify-content: center;
+  padding: 32px 16px 48px;
+}
+.app { width: min(820px, 100%); }
+.screen { animation: fade .15s ease; }
+.hidden { display: none !important; }
+@keyframes fade { from { opacity: 0 } to { opacity: 1 } }
+h1 { font-size: 1.6rem; margin: 0 0 6px; }
+.sub { color: #a3adc0; font-size: .92rem; }
+.hint { color: #8b95a8; font-size: .82rem; margin: 4px 0 0; }
+.stack { display: flex; flex-direction: column; gap: 12px; max-width: 420px; margin-top: 18px; }
+.row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+label { display: flex; flex-direction: column; gap: 6px; font-size: .85rem; color: #b6bfd0; }
+input, select, button {
+  font: inherit;
+  font-size: .92rem;
+  padding: 9px 12px;
+  border-radius: 9px;
+  border: 1px solid #3a4356;
+  background: #262d3d;
+  color: #e8eaf0;
+}
+button { cursor: pointer; background: #3b6ef5; border-color: #3b6ef5; font-weight: 600; }
+button.ghost { background: #262d3d; border-color: #3a4356; font-weight: 500; }
+button.big { font-size: 1.05rem; padding: 14px 16px; text-align: left; }
+.boardWrap { display: flex; justify-content: center; margin-top: 12px; }
+#board {
+  display: grid;
+  background: var(--board);
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
+  user-select: none;
+}
+.cell { width: 26px; height: 26px; position: relative; background: none; border: 0; padding: 0; cursor: pointer; }
+.cell::before { content: ""; position: absolute; inset: 50% 0 auto 0; height: 1px; background: var(--line); }
+.cell::after { content: ""; position: absolute; inset: 0 50% auto 50%; width: 1px; height: 100%; background: var(--line); }
+.stone { position: absolute; inset: 2px; border-radius: 50%; z-index: 1; box-shadow: 0 1px 2px rgba(0,0,0,.4); }
+.stone.black { background: radial-gradient(circle at 32% 30%, #555, var(--black) 70%); }
+.stone.white { background: radial-gradient(circle at 32% 30%, #fff, #cbcbcb 75%); }
+.cell.win .stone { outline: 3px solid #ff5d5d; outline-offset: -3px; }
+.cell:not(.taken):hover .stone { background: rgba(0, 0, 0, .18); }
+.gamebar {
+  display: flex; justify-content: space-between; gap: 12px;
+  font-size: .95rem; margin-bottom: 6px; flex-wrap: wrap;
+}
+#gameTurn b { color: #ffd479; }
+h1#resultTitle { font-size: 1.8rem; }
+@media (max-width: 640px) { .cell { width: 20px; height: 20px; } }
